@@ -11,15 +11,26 @@ import java.util.stream.Collectors;
 public class ProducerRepositoryImpl implements ProducerRepository {
     private static final String PATH = "data/producers.json";
 
+    private static ProducerRepository instance;
+
+    private ProducerRepositoryImpl() {
+    }
+    public static ProducerRepository getInstance() {
+        if (instance == null) {
+            instance = new ProducerRepositoryImpl();
+        }
+        return instance;
+    }
+
     @Override
     public void createProducer(Producer producer) {
-        List<Producer> producers = new ArrayList<>(readAll());
+        List<Producer> producers = new ArrayList<>(findAll());
         producers.add(producer);
         createProducers(producers);
     }
 
     @Override
-    public List<Producer> readAll() {
+    public List<Producer> findAll() {
         try (FileReader fr = new FileReader(PATH);
              BufferedReader br = new BufferedReader(fr)) {
 
@@ -37,7 +48,7 @@ public class ProducerRepositoryImpl implements ProducerRepository {
 
     @Override
     public void updateProducer(Producer producer) {
-        List<Producer> list = new ArrayList<>(readAll());
+        List<Producer> list = new ArrayList<>(findAll());
         Optional<Producer> optionalProducer = findById(producer.getId());
         if (optionalProducer.isPresent()) {
             Producer tempProducer = optionalProducer.get();
@@ -50,7 +61,7 @@ public class ProducerRepositoryImpl implements ProducerRepository {
     }
 
     private Optional<Producer> findById(long id) {
-        return readAll().stream().filter(producer -> producer.getId() == id).findAny();
+        return findAll().stream().filter(producer -> producer.getId() == id).findAny();
     }
 
     private void createProducers(List<Producer> producers) {

@@ -6,7 +6,7 @@ import org.example.entities.Souvenir;
 import java.util.List;
 
 public interface SouvenirRepository {
-    List<Souvenir> readAll();
+    List<Souvenir> findAll();
     List<Souvenir> findByProducer(Producer producer);
     List<Souvenir> findByYear(int year);
     void createSouvenir(Souvenir souvenir);

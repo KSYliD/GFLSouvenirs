@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface ProducerRepository {
     void createProducer(Producer producer);
-    List<Producer> readAll();
+    List<Producer> findAll();
     void updateProducer(Producer producer);
 
 }

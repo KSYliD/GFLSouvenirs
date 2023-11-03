@@ -19,13 +19,13 @@ public class SouvenirServiceImpl implements SouvenirService {
     }
 
     @Override
-    public List<Souvenir> readAll() {
-        return souvenirRepository.readAll();
+    public List<Souvenir> findAll() {
+        return souvenirRepository.findAll();
     }
 
     @Override
     public List<Souvenir> findByCountry(String country) {
-        List<Producer> producersOfSuchACountry = producerRepository.readAll()
+        List<Producer> producersOfSuchACountry = producerRepository.findAll()
                 .stream()
                 .filter(producer -> producer.getCountry().equals(country))
                 .toList();
@@ -48,7 +48,7 @@ public class SouvenirServiceImpl implements SouvenirService {
 
     @Override
     public void createSouvenir(Souvenir souvenir) {
-        List<Souvenir> list = new ArrayList<>(readAll());
+        List<Souvenir> list = new ArrayList<>(findAll());
         if (list.stream().noneMatch(listElement -> listElement.getId() == souvenir.getId())) {
             souvenirRepository.createSouvenir(souvenir);
         } else {

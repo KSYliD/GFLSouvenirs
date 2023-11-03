@@ -22,15 +22,15 @@ public class ProducerServiceImpl implements ProducerService {
     }
 
     @Override
-    public Map<Producer, List<Souvenir>> readEverything() {
+    public Map<Producer, List<Souvenir>> findEverything() {
         Map<Producer, List<Souvenir>> map = new HashMap<>();
-        readAll().forEach(producer -> map.put(producer, souvenirRepository.findByProducer(producer)));
+        findAll().forEach(producer -> map.put(producer, souvenirRepository.findByProducer(producer)));
         return map;
     }
 
     @Override
     public void createProducer(Producer producer) {
-        List<Producer> list = new ArrayList<>(readAll());
+        List<Producer> list = new ArrayList<>(findAll());
         if (list.stream().noneMatch(listElement -> listElement.getId() == producer.getId())) {
             producerRepository.createProducer(producer);
         } else {
@@ -39,11 +39,11 @@ public class ProducerServiceImpl implements ProducerService {
     }
 
     @Override
-    public List<Producer> readAll() {
+    public List<Producer> findAll() {
         if (new File("data/producers.json").length() == 0) {
             throw new IllegalArgumentException("the file is empty, please rewrite the logic");
         }
-        return producerRepository.readAll();
+        return producerRepository.findAll();
     }
 
     @Override
@@ -59,7 +59,7 @@ public class ProducerServiceImpl implements ProducerService {
     }
 
     private void deleteProducer(Producer producer) {
-        List<Producer> list = new ArrayList<>(readAll());
+        List<Producer> list = new ArrayList<>(findAll());
         int index = findIndexOfProducer(list, producer);
         if (index >= 0) {
             list.remove(index);
@@ -69,11 +69,14 @@ public class ProducerServiceImpl implements ProducerService {
 
     private int findIndexOfProducer(List<Producer> list, Producer producer) {
         Producer optionalSouvenir = findById(producer.getId());
-        return list.indexOf(list.stream().filter(souvenirs -> souvenirs.equals(optionalSouvenir)).findAny().orElseThrow());
+        return list.indexOf(list.stream()
+                .filter(souvenirs -> souvenirs.equals(optionalSouvenir))
+                .findAny()
+                .orElseThrow());
     }
 
     private Producer findById(long id) {
-        return readAll().stream().filter(producer -> producer.getId() == id).findAny().orElseThrow();
+        return findAll().stream().filter(producer -> producer.getId() == id).findAny().orElseThrow();
     }
 
     private void createProducers(List<Producer> producers) {
@@ -82,7 +85,7 @@ public class ProducerServiceImpl implements ProducerService {
 
     @Override
     public List<Producer> findByPriseLessThan(int price) {
-        List<Souvenir> souvenirs = souvenirRepository.readAll();
+        List<Souvenir> souvenirs = souvenirRepository.findAll();
         if (souvenirs.isEmpty()) {
             return Collections.emptyList();
         }

@@ -6,7 +6,7 @@ import org.example.entities.Souvenir;
 import java.util.List;
 
 public interface SouvenirService {
-    List<Souvenir> readAll();
+    List<Souvenir> findAll();
 
     List<Souvenir> findByCountry(String country);
 

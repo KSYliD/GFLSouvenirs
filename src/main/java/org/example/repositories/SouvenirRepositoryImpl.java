@@ -14,9 +14,18 @@ import java.util.stream.Collectors;
 
 public class SouvenirRepositoryImpl implements SouvenirRepository {
     private static final String PATH = "data/souvenirs.json";
+    private static SouvenirRepository instance;
 
+    private SouvenirRepositoryImpl() {
+    }
+    public static SouvenirRepository getInstance() {
+        if (instance == null) {
+            instance = new SouvenirRepositoryImpl();
+        }
+        return instance;
+    }
     @Override
-    public List<Souvenir> readAll() {
+    public List<Souvenir> findAll() {
         try (FileReader fr = new FileReader(PATH);
              BufferedReader br = new BufferedReader(fr)) {
 
@@ -43,7 +52,7 @@ public class SouvenirRepositoryImpl implements SouvenirRepository {
 
     @Override
     public List<Souvenir> findByProducer(Producer producer) {
-        return readAll()
+        return findAll()
                 .stream()
                 .filter(souvenir -> souvenir.getProducerId() == producer.getId())
                 .toList();
@@ -51,12 +60,12 @@ public class SouvenirRepositoryImpl implements SouvenirRepository {
 
     @Override
     public List<Souvenir> findByYear(int year) {
-        return readAll().stream().filter(souvenir -> souvenir.getYear() == year).toList();
+        return findAll().stream().filter(souvenir -> souvenir.getYear() == year).toList();
     }
 
     @Override
     public void createSouvenir(Souvenir souvenir) {
-        List<Souvenir> souvenirs = new ArrayList<>(readAll());
+        List<Souvenir> souvenirs = new ArrayList<>(findAll());
         souvenirs.add(souvenir);
         createSouvenirs(souvenirs);
     }
@@ -87,7 +96,7 @@ public class SouvenirRepositoryImpl implements SouvenirRepository {
 
     @Override
     public void updateSouvenir(Souvenir souvenir) {
-        List<Souvenir> list = new ArrayList<>(readAll());
+        List<Souvenir> list = new ArrayList<>(findAll());
         int index = findIndexOfSouvenir(list, souvenir);
         if (index >= 0) {
             list.set(index, souvenir);
@@ -97,13 +106,13 @@ public class SouvenirRepositoryImpl implements SouvenirRepository {
     }
 
     private Souvenir findById(long id) {
-        List<Souvenir> souvenirs = new ArrayList<>(readAll());
+        List<Souvenir> souvenirs = new ArrayList<>(findAll());
         return souvenirs.stream().filter(souvenir -> souvenir.getId() == id).findAny().orElseThrow();
     }
 
     @Override
     public void deleteSouvenir(Souvenir souvenir) {
-        List<Souvenir> list = new ArrayList<>(readAll());
+        List<Souvenir> list = new ArrayList<>(findAll());
         int index = findIndexOfSouvenir(list, souvenir);
         if (index >= 0) {
             list.remove(index);

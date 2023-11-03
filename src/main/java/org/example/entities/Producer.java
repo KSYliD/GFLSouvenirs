@@ -1,23 +1,27 @@
 package org.example.entities;
 
 
-public class ProducerDto {
-    private int id;
+import java.util.Objects;
+
+public class Producer {
+    private long id;
     private String name;
     private String country;
 
+    public Producer() {
+    }
 
-    public ProducerDto(int id, String name, String country) {
+    public Producer(long id, String name, String country) {
         this.id = id;
         this.name = name;
         this.country = country;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -35,5 +39,23 @@ public class ProducerDto {
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Producer producer = (Producer) o;
+        return id == producer.id && Objects.equals(name, producer.name) && Objects.equals(country, producer.country);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, country);
+    }
+
+    @Override
+    public String toString() {
+        return "Producer = id: " + id + ", name = " + name + ", country = " + country + '}'+ '\n';
     }
 }

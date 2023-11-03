@@ -4,26 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d5ee0c9d-3b7a-4a2b-9a6a-86043d61cf3d" name="Changes" comment="singleton">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/command/MethodExecutor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/command/create/CreateProducerOperation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/command/create/CreateSouvenirOperation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/command/delete/DeleteProducerAndHisSouvenirsOperation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/command/delete/DeleteSouvenirOperation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/command/read/FindEverythingOperation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/command/read/producers/FindAllProducersOperation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/command/read/producers/FindProducerBySouvenirOfSuchYearOperation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/command/read/producers/FindProducerBySouvenirsPriseLessThanOperation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/command/read/souvenirs/FindAllSouvenirsOperation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/command/read/souvenirs/FindSouvenirsByCountryOperation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/command/read/souvenirs/FindSouvenirsByProducerOperation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/command/read/souvenirs/FindSouvenirsByYearOperation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/command/update/UpdateProducerOperation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/command/update/UpdateSouvenirOperation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/producers.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/producers.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/souvenirs.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/souvenirs.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
+    <list default="true" id="d5ee0c9d-3b7a-4a2b-9a6a-86043d61cf3d" name="Changes" comment="command">
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/command/create/CreateSouvenirOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/command/create/CreateSouvenirOperation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/entities/Souvenir.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/entities/Souvenir.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -145,7 +128,7 @@
       <workItem from="1698683799888" duration="16272000" />
       <workItem from="1698942383408" duration="29989000" />
       <workItem from="1698994634367" duration="46000" />
-      <workItem from="1698999041288" duration="6178000" />
+      <workItem from="1698999041288" duration="7740000" />
     </task>
     <task id="LOCAL-00001" summary="repository, services and main">
       <option name="closed" value="true" />
@@ -171,7 +154,15 @@
       <option name="project" value="LOCAL" />
       <updated>1699019839651</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="command">
+      <option name="closed" value="true" />
+      <created>1699028454235</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1699028454235</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -191,7 +182,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="repository, services and main" />
     <MESSAGE value="singleton" />
-    <option name="LAST_COMMIT_MESSAGE" value="singleton" />
+    <MESSAGE value="command" />
+    <option name="LAST_COMMIT_MESSAGE" value="command" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

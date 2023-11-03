@@ -25,9 +25,15 @@ public class CreateSouvenirOperation implements MethodExecutor {
         long producerId = scanner.nextLong();
         System.out.println("Enter producer year: ");
         int year = scanner.nextInt();
-        System.out.println("Enter producer prise: ");
-        int prise = scanner.nextInt();
-        souvenirService.createSouvenir(new Souvenir(id, name, producerId, year, prise));
+        System.out.println("Enter producer price: ");
+        int price = scanner.nextInt();
+        Souvenir souvenir = new Souvenir
+                .SouvenirBuilder(id, name)
+                .producerId(producerId)
+                .year(year)
+                .price(price)
+                .build();
+        souvenirService.createSouvenir(souvenir);
         return  "The souvenir has been created successfully";
     }
 }

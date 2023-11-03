@@ -83,4 +83,28 @@ public class Souvenir {
                 producerId + ", date = " + year +", price = " + price +';';
     }
 
+    public static class SouvenirBuilder{
+        private final Souvenir souvenir = new Souvenir();
+
+        public SouvenirBuilder(long id, String name) {
+            souvenir.id = id;
+            souvenir.name = name;
+        }
+
+        public SouvenirBuilder producerId(long producerId){
+            souvenir.producerId = producerId;
+            return this;
+        }
+        public SouvenirBuilder year(int year){
+            souvenir.year = year;
+            return this;
+        }
+        public SouvenirBuilder price(int price){
+            souvenir.price = price;
+            return this;
+        }
+        public Souvenir build(){
+            return souvenir;
+        }
+    }
 }
